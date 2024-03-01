@@ -108,5 +108,5 @@ UI_HANDLERS = [
     tornado.web.url(r"/debug/health/?$", HealthCheckHandler),
     tornado.web.url(r"/logs/(.*)", StaticFileHandler, {"path": get_dir_worker_logs()}, name="logs_files_url"),
     tornado.web.url(r"/output_files/(.*)", FileRedirectHandler, name="file_redirect_url"),
-    tornado.web.url(r"^/(?!api|debug|static|output_files|logs)(.*)$", IndexHandler),
+    tornado.web.url(r"^/(?!api|debug|static|output_files)(.*)$", IndexHandler),
 ]
