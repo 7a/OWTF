@@ -111,7 +111,7 @@ export class DataTable extends React.Component<propsType ,stateType> {
 
   render() {
     const { obj, deletePluginOutput, postToWorklist } = this.props;
-    const output_path = encodeURIComponent(obj["output_path"]) + "/";
+    const output_path = encodeURIComponent(obj["output_path"]) + "/";;
     const status = obj["status"];
     const run_time = obj["run_time"];
     const start_time = obj["start_time"];
@@ -169,7 +169,7 @@ export class DataTable extends React.Component<propsType ,stateType> {
               if (output_path !== undefined) {
                 return (
                   <div className="targetsCollapseDataTableContainer__bodyContainer__rowContainer__outputfiles">
-                    <Link to={"/output_files/" + output_path}>
+                    <Link to={"/output_files/" + output_path} target="_blank">
                       <button
                         disabled={output_path === null}
                       >

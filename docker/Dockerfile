@@ -47,7 +47,7 @@ ENV LC_ALL en_US.UTF-8
 
 # Install optional tools (LBD, arachni, gnutls-bin, o-saft and metagoofil)
 RUN apt-get -y install lbd theharvester tlssled nikto dnsrecon nmap whatweb skipfish dirbuster \
-metasploit-framework wpscan wapiti hydra metagoofil o-saft amass
+metasploit-framework wpscan wapiti hydra metagoofil o-saft amass gobuster
 
 # Create a dedicated OWTF directory to copy source to and run from.
 RUN cd / && /bin/mkdir -p owtf
@@ -65,6 +65,8 @@ RUN pip install --upgrade pip
 RUN pip install setuptools==57.5.0
 RUN pip install cffi
 RUN pip install wheel
+RUN setcap cap_net_admin,cap_net_raw=eip $(which nmap)
+
 
 #Installing python dependencies
 RUN pip install -r /owtf/requirements/base.txt

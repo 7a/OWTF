@@ -113,6 +113,9 @@ DICTIONARIES:
     value: /usr/share/doc/python-impacket-doc/examples/samrdump.py
 # ************************** Directory Brute-forcing dictionaries **************************
 
+# SecList
+  - config: DICT_SECLISTS
+    value: ~/.owtf/dictionaries/restricted/seclists/SecLists-master
 # Generic all-in-one dictionary that combines svndigger with raft files of mixedcase:
   - config: DICT_GENERIC_DIRBUSTER
     value: "@@@FRAMEWORK_DIR@@@/dictionaries/restricted/combined/filtered_combined_mixedcase.txt"
