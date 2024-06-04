@@ -63,7 +63,7 @@ USER owtf
 
 #Create and activating a python virtualenv
 ENV VIRTUAL_ENV="${HOME}/owtf-venv"
-RUN python3.9 -m venv $VIRTUAL_ENV
+RUN python3.11 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Ensure pip and setuptools are at their latest versions
