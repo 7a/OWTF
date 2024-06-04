@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "OWASP Offensive Web Testing Framework",
   "scripts": {
-    "build": "NODE_ENV=production webpack --config webpack/prod.config.js --color -p --progress --hide-modules --display-optimization-bailout",
+    "build": "NODE_ENV=production webpack --config webpack/prod.config.js --color --progress --hide-modules --display-optimization-bailout",
     "start": "NODE_ENV=development node server",
     "precommit": "pretty-quick --staged",
     "test": "jest",
