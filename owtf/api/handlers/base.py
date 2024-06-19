@@ -42,15 +42,30 @@ auth_header_pat = re.compile(r"^(?:token|bearer)\s+([^\s]+)$", flags=re.IGNORECA
 
 
 class BaseRequestHandler(RequestHandler):
+    CORS_ORIGIN = "http://localhost:8019"
+
     def set_default_headers(self):
+        # Security headers
         self.add_header("X-OWTF-Version", __version__)
         self.add_header("X-Frame-Options", "SAMEORIGIN")
         self.add_header("X-XSS-Protection", "1; mode=block")
         self.add_header("X-Content-Type-Options", "nosniff")
         self.add_header("Referrer-Policy", "strict-origin-when-cross-origin")
+
+        # CORS headers
+        self.set_header("Access-Control-Allow-Origin", self.CORS_ORIGIN)
+        self.set_header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS")
+        self.set_header("Access-Control-Request-Credentials", "true")
+        self.set_header("Access-Control-Allow-Headers", "Authorization,Content-Type")
+        # Caching headers
         self.add_header("Cache-Control", "no-cache,no-store,max-age=0,must-revalidate")
         self.add_header("Pragma", "no-cache")
         self.add_header("Expires", "-1")
+
+    def options(self, *args, **kwargs):
+
+        self.set_status(204)
+        self.finish()
 
 
 class APIRequestHandler(BaseRequestHandler):

@@ -5,7 +5,7 @@ function getHeaders() {
   return {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-      Authorization: `Bearer ${localStorage.getItem("token")}`
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
     }
   };
 }

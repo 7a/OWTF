@@ -26,6 +26,7 @@ from owtf.settings import (
     SMTP_PORT,
     SERVER_ADDR,
     SERVER_PORT,
+    FRONTEND_SERVER_PORT,
 )
 from owtf.db.session import Session
 from uuid import uuid4
@@ -340,7 +341,7 @@ class AccountActivationGenerateHandler(APIRequestHandler):
             + ", <br/><br/>"
             """ 
             Click here """
-            + "http://{}:{}".format(SERVER_ADDR, str(SERVER_PORT))
+            + "http://{}:{}".format(SERVER_ADDR, str(FRONTEND_SERVER_PORT))
             + "/email-verify/"
             + email_confirmation_dict["key_value"]
             + """ to activate your account (Link will expire in 1 hour).
