@@ -30,6 +30,11 @@ class DashboardPanelHandler(APIRequestHandler):
 class ProgressBarHandler(APIRequestHandler):
     SUPPORTED_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
+    def set_default_headers(self):
+        self.add_header("Access-Control-Allow-Origin", "*")
+        self.add_header("Access-Control-Allow-Methods", "GET, POST, DELETE")
+        self.set_header("Access-Control-Allow-Headers", "Authorization,Content-Type")
+
     def get(self):
         try:
             self.write(plugin_count_output(self.session))

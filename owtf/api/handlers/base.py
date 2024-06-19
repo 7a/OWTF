@@ -43,7 +43,7 @@ auth_header_pat = re.compile(r"^(?:token|bearer)\s+([^\s]+)$", flags=re.IGNORECA
 
 
 class BaseRequestHandler(RequestHandler):
-    CORS_ORIGIN = ALLOWED_ORIGINS[1]
+    CORS_ORIGIN = "http://localhost:8019"
 
     def set_default_headers(self):
         # Security headers

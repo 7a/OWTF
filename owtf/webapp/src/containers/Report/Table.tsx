@@ -170,7 +170,7 @@ export class DataTable extends React.Component<propsType ,stateType> {
               if (output_path !== undefined) {
                 return (
                   <div className="targetsCollapseDataTableContainer__bodyContainer__rowContainer__outputfiles">
-                    <a href={API_HOST+"/output_files/" + output_path}>
+                    <Link to={API_HOST+"/output_files/" + output_path}>
                       <button
                         disabled={output_path === null}
                       >
