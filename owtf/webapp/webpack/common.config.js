@@ -19,7 +19,7 @@ module.exports = {
   entry: [PATHS.app],
   output: {
     path: PATHS.build,
-    publicPath: "",
+    publicPath: "/",
   },
   plugins: [
     new webpack.ProvidePlugin({

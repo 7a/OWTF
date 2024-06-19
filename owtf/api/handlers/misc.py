@@ -33,6 +33,7 @@ class ProgressBarHandler(APIRequestHandler):
     def set_default_headers(self):
         self.add_header("Access-Control-Allow-Origin", "*")
         self.add_header("Access-Control-Allow-Methods", "GET, POST, DELETE")
+        self.set_header("Access-Control-Allow-Headers", "Authorization,Content-Type")
 
     def get(self):
         try:
