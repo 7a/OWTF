@@ -15,6 +15,18 @@ class ConfigurationHandler(APIRequestHandler):
     """Update framework settings and tool paths."""
 
     SUPPORTED_METHODS = ["GET", "PATCH"]
+    def set_default_headers(self):
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Methods", "GET,OPTIONS,PATCH")
+        self.set_header("Access-Control-Request-Credentials", "true")
+        self.set_header("Access-Control-Allow-Headers", "Authorization,Content-Type")
+
+    def options(self, *args, **kwargs):
+
+        self.set_status(204)
+        self.finish()
+
+
 
     def get(self):
         """Return all configuration items.

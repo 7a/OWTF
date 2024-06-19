@@ -95,7 +95,13 @@ docker-run:
 
 compose:
 	@echo "--> Running the Docker Compose setup"
-	docker-compose -f docker/docker-compose.dev.yml up
+	docker compose -f docker/docker-compose.dev.yml up
+compose-build:
+	@echo "--> Running the Docker Compose setup"
+	docker compose -f docker/docker-compose.dev.yml up --build 
+compose-build-backend:
+	@echo "--> Running the Docker Compose setup"
+	docker compose -f docker/docker-compose.dev.yml up --build owtf-backend
 
 ### DEBIAN PACKAGING
 
