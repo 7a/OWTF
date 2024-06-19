@@ -18,6 +18,7 @@ import {
 } from "./selectors";
 import { GiRecycle } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
+import { API_HOST } from "../../utils/constants";
 
 interface propsType {
   targetData: any,
@@ -169,7 +170,7 @@ export class DataTable extends React.Component<propsType ,stateType> {
               if (output_path !== undefined) {
                 return (
                   <div className="targetsCollapseDataTableContainer__bodyContainer__rowContainer__outputfiles">
-                    <Link to={"/output_files/" + output_path}>
+                    <Link to={API_HOST+"/output_files/" + output_path}>
                       <button
                         disabled={output_path === null}
                       >

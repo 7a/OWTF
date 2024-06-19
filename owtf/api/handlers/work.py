@@ -47,6 +47,7 @@ class WorkerHandler(APIRequestHandler):
     def set_default_headers(self):
         self.add_header("Access-Control-Allow-Origin", "*")
         self.add_header("Access-Control-Allow-Methods", "GET, POST, DELETE")
+        self.add_header("Access-Control-Allow-Headers", "Authorization,Content-Type")
 
     def get(self, worker_id=None, action=None):
         """Get all workers by ID.

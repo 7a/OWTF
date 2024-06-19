@@ -213,7 +213,7 @@ if [ ! "$(uname)" == "Darwin" ]; then
 fi
 
 proxy_setup
-ui_setup
+# ui_setup
 make post-install
 
 echo "${info}[*] Finished!${reset}"
