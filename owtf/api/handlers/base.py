@@ -19,6 +19,7 @@ from owtf.settings import (
     USE_SENTRY,
     SERVER_ADDR,
     SESSION_COOKIE_NAME,
+    ALLOWED_ORIGINS,
 )
 from owtf.utils.strings import utf8
 
