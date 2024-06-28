@@ -213,10 +213,13 @@ if [ ! "$(uname)" == "Darwin" ]; then
 fi
 
 proxy_setup
-# ui_setup
+if [ $IS_DOCKER -eq 0 ]; then
+    ui_setup
+fi
 make post-install
 
 echo "${info}[*] Finished!${reset}"
 echo "${info}[*] Start OWTF by running cd path/to/pentest/directory; owtf${reset}"
+echo "${info}[*] Start OWTF-Webapp by running make web OWTF_ENV=prod"
 echo "${warning}[!] Please add a new JWT_SECRET_KEY in the settings file located in owtf/owtf/settings.py${reset} "
 echo "${warning}[!] Please setup SMTP server of your choice in the settings file located in owtf/owtf/settings.py${reset} "
