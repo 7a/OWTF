@@ -9,16 +9,13 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const proxyMiddleware = require('http-proxy-middleware');
-const webpackConfig = require('../webpack/dev.config');
+const webpackConfig = require('../../webpack/dev.config');
 
 const publicPath = webpackConfig.output.publicPath;
 const app = express();
 const compiler = webpack(webpackConfig);
 const middleware = webpackDevMiddleware(compiler, {
-  noInfo: true,
   publicPath,
-  silent: true,
-  stats: 'errors-only',
 });
 const port = 3000;
 const host = '0.0.0.0';
