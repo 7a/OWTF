@@ -32,7 +32,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile.frontend
     ports:
-      - 8019:80
+      - 8019:8019
     volumes:
       - ..:/owtf
     networks:
