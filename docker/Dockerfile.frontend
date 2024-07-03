@@ -5,8 +5,14 @@ COPY ./owtf/webapp/package.json ./owtf/webapp/yarn.lock ./
 RUN yarn install --silent
 COPY ./owtf/webapp .
 RUN yarn build
-RUN yarn cache clean
 
+# # Stage 2: Serve the built React app with Nginx
+FROM nginx:alpine
+
+COPY ./owtf/webapp/owtf.conf /etc/nginx/conf.d/default.conf
+# Copy the built React app to Nginx's web server directory
+
+COPY --from=builder /owtf-webapp/build /usr/share/nginx/html
+# Expose port 80 for the Nginx server
 EXPOSE 8019
-
-CMD ["yarn", "run", "prod"]
+# Start Nginx when the container runs
