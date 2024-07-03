@@ -68,10 +68,15 @@ install-requirements: install-python-requirements install-ui-requirements instal
 
 web:
 ifdef OWTF_ENV
-	cd owtf/webapp && yarn run ${OWTF_ENV}
+	cd owtf/webapp && yarn run start
 else
-	@echo "--> No environment specified. Usage: make OWTF_ENV={dev, prod} web"
+	@echo "--> No environment specified. Usage: make web OWTF_ENV={dev}"
 endif
+
+setup-web:
+	@echo "--> Setting up the webapp on http://localhost:8019"
+	cd scripts && ./setup_webapp.sh
+
 
 post-install:
 	@echo "--> Installing dictionaries and tools"
