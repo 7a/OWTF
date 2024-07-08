@@ -20,14 +20,17 @@ ENV PYCURL_SSL_LIBRARY openssl
 
 # Install dependencies and clean up in the same layer to reduce image size
 RUN apt-get -y update && \
-    apt-get -y install --no-install-recommends git xvfb xserver-xephyr libxml2-dev libxslt-dev libssl-dev zlib1g-dev gcc python-all-dev \
+    apt-get -y install --no-install-recommends git xvfb xserver-xephyr libxml2-dev libxslt-dev libssl-dev zlib1g-dev gcc python-all-dev libcap2-bin zip unzip \
     postgresql-server-dev-all postgresql-client postgresql-client-common \
     postgresql libcurl4-openssl-dev proxychains tor ca-certificates libpq-dev  \
     libxslt1-dev libldap2-dev libsasl2-dev libffi-dev net-tools lsof locales-all \
     make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
-    lbd theharvester tlssled nikto dnsrecon nmap whatweb skipfish dirbuster metasploit-framework wpscan wapiti hydra metagoofil o-saft amass && \
+    lbd theharvester tlssled nikto dnsrecon nmap whatweb skipfish dirbuster metasploit-framework wpscan wapiti hydra metagoofil o-saft amass dirsearch && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+# Nmap needs capabilities to run on docker
+RUN setcap cap_net_admin,cap_net_raw=eip $(which nmap)
 
 # Stage 2: User Setup
 FROM base AS owtf_setup
