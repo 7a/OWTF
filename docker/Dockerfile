@@ -19,14 +19,15 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYCURL_SSL_LIBRARY openssl
 
 # Install dependencies and clean up in the same layer to reduce image size
-RUN apt-get -y update && \
-    apt-get -y install --no-install-recommends git xvfb xserver-xephyr libxml2-dev libxslt-dev libssl-dev zlib1g-dev gcc python-all-dev libcap2-bin zip unzip \
+RUN apt -y update && \
+    apt -y install --no-install-recommends git xvfb xserver-xephyr libxml2-dev libxslt-dev libssl-dev zlib1g-dev gcc python-all-dev libcap2-bin zip unzip \
     postgresql-server-dev-all postgresql-client postgresql-client-common \
     postgresql libcurl4-openssl-dev proxychains tor ca-certificates libpq-dev  \
     libxslt1-dev libldap2-dev libsasl2-dev libffi-dev net-tools lsof locales-all \
     make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
-    lbd theharvester tlssled nikto dnsrecon nmap whatweb skipfish dirbuster metasploit-framework wpscan wapiti hydra metagoofil o-saft amass dirsearch && \
-    apt-get clean && \
+    lbd theharvester tlssled nikto dnsrecon nmap whatweb skipfish dirbuster metasploit-framework wpscan wapiti hydra metagoofil o-saft amass && \
+    apt -y install httpx-toolkit nuclei subfinder && \
+    apt clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Nmap needs capabilities to run on docker
@@ -68,6 +69,9 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 # Ensure pip and setuptools are at their latest versions
 RUN pip install --upgrade pip
 RUN pip install setuptools==57.5.0 cffi wheel
+
+# Dirsearch is python-based, so has to be installed in virtualenv
+RUN pip install dirsearch
 
 #Installing python dependencies
 RUN pip install -r ${HOME}/requirements/base.txt
