@@ -52,3 +52,6 @@ Testssl:
 GCPBucketBrute:
   command: "git clone https://github.com/RhinoSecurityLabs/GCPBucketBrute.git ."
   directory: tools/restricted/gcpbucketbrute
+Dirsearch:
+  command: "pip install dirsearch"
+  directory: ./

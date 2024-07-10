@@ -70,8 +70,6 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --upgrade pip
 RUN pip install setuptools==57.5.0 cffi wheel
 
-# Dirsearch is python-based, so has to be installed in virtualenv
-RUN pip install dirsearch
 
 #Installing python dependencies
 RUN pip install -r ${HOME}/requirements/base.txt

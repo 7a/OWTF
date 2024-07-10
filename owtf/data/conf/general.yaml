@@ -82,7 +82,7 @@ TOOLS:
     value: ~/owtf/owtf-venv/bin/dirsearch
   - config: TOOL_AMASS
     value: /usr/bin/amass
-  - config: TOOL_NUCLEI
+  - config: TOOL_NUCLEI 
     value: /usr/bin/nuclei
   - config: TOOL_HTTPX
   - value: /usr/bin/httpx-toolkit
