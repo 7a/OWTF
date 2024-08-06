@@ -1,0 +1,60 @@
+---
+- name: Setup Ubuntu with Docker and OWASP OWTF
+  hosts: localhost
+  become: true
+  connection: local
+
+  tasks:
+    - name: Update apt repository and upgrade packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+        autoremove: yes
+
+    - name: Install prerequisite packages
+      apt:
+        name: ['apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'git', 'docker-compose', 'make']
+        state: present
+
+    - name: Add Docker's official GPG key
+      ansible.builtin.shell: |
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+    - name: Add Docker's stable repository
+      ansible.builtin.shell: |
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    - name: Update apt package index (again)
+      apt:
+        update_cache: yes
+
+    - name: Install Docker CE
+      ansible.builtin.shell: |
+        apt-cache policy docker-ce && sudo apt install docker-ce -y
+
+    - name: Add user to docker group
+      become: yes
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    - name: Notify user of need to log out and log back in
+      ansible.builtin.debug:
+        msg: "NOTE: You'll need to log out and log back in for the group membership to take effect."
+
+    - name: Reset ssh connection to allow user changes to take effect
+      meta: reset_connection
+
+    - name: Clone OWTF repository
+      ansible.builtin.shell: |
+        git clone https://github.com/owtf/owtf /home/ubuntu/owtf
+
+    - name: Restart Docker service
+      ansible.builtin.shell: |
+        sudo systemctl restart docker
+
+    - name: Run OWTF using Docker Compose
+      ansible.builtin.shell: |
+        docker-compose -f /home/ubuntu/owtf/docker/docker-compose.dev.yml up -d
+...
