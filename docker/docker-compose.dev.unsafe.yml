@@ -1,6 +1,9 @@
 version: "3.3"
 services:
   owtf:
+    cap_add:
+      - CAP_NET_RAW
+      - CAP_NET_ADMIN
     restart: always
     build:
       context: ..
