@@ -79,13 +79,17 @@ TOOLS:
   - config: TOOL_GCPBUCKETBRUTE
     value: ~/.owtf/tools/restricted/gcpbucketbrute/
   - config: TOOL_DIRSEARCH
-    value: ~/owtf/owtf-venv/bin/dirsearch
+    value: ~/.owtf/tools/restricted/dirsearch/dirsearch-master/dirsearch.py
   - config: TOOL_AMASS
     value: /usr/bin/amass
   - config: TOOL_NUCLEI 
     value: /usr/bin/nuclei
   - config: TOOL_HTTPX
-  - value: /usr/bin/httpx-toolkit
+    value: /usr/bin/httpx-toolkit
+  - config: TOOL_GAU
+    value: ~/.owtf/tools/restricted/gau/gau
+
+
 
 DICTIONARIES:
 # ************************* Password brute-force dictionaries / defaults ******************************
