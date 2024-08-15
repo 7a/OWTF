@@ -53,5 +53,8 @@ GCPBucketBrute:
   command: "git clone https://github.com/RhinoSecurityLabs/GCPBucketBrute.git ."
   directory: tools/restricted/gcpbucketbrute
 Dirsearch:
-  command: "pip install dirsearch"
-  directory: ./
+  command: "wget https://github.com/maurosoria/dirsearch/archive/master.zip; unzip master.zip; pip install -r dirsearch-master/requirements.txt"
+  directory: tools/restricted/dirsearch
+GAU:
+  command: "wget https://github.com/lc/gau/releases/download/v2.2.3/gau_2.2.3_linux_amd64.tar.gz; tar xvf gau_2.2.3_linux_amd64.tar.gz"
+  directory: tools/restricted/gau
