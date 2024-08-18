@@ -5,6 +5,7 @@ from sqlalchemy.sql.functions import user
 from owtf.models.user_login_token import UserLoginToken
 import jwt
 from owtf.settings import JWT_SECRET_KEY, JWT_OPTIONS, JWT_ALGORITHM
+
 from owtf.db.session import Session
 
 

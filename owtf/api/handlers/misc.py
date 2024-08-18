@@ -91,3 +91,4 @@ class ErrorDataHandler(APIRequestHandler):
             self.finish()
         except exceptions.InvalidErrorReference:
             raise tornado.web.HTTPError(400)
+
