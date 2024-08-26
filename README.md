@@ -61,7 +61,7 @@ The recommended way to use OWTF is by building the Docker Image so you will not 
 ```
 git clone https://github.com/owtf/owtf
 cd owtf
-make compose
+make compose-safe
 ```
 
 
@@ -101,8 +101,10 @@ Create the database,
 git clone https://github.com/owtf/owtf
 cd owtf
 python3 setup.py develop
+make startdb
+make setup-web
 owtf
-open `localhost:8009` in the web browser for the OWTF web interface or `owtf --help` for all available commands.
+open `localhost:8019` in the web browser for the OWTF web interface or `owtf --help` for all available commands.
 ```
 
 # Features
